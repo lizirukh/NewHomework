@@ -33,10 +33,21 @@
 # print(functor(300))
 
 # დავალება 3
-# import time
+import time
+
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        func()
+        return "--- %s seconds ---" % (time.time() - start_time)
+    return wrapper
+
+@decorator 
+def print_time():
+    x = 0
+    while x < 100:
+        print(f'X is {x} and is less than 10')
+        x+=2
 
 
-
-# @decorator
-# def time_counter(x):
-#     print()
+print(print_time())
