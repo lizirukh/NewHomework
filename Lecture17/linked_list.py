@@ -40,6 +40,30 @@ class LinkedList:
         if current_node.next:
             current_node.next = current_node.next.next
             
+    def delete(self, value): # delete node by value
+
+        if self.head is None:
+            print(f'The linked list is empty. You can\'t delete node.')
+            return
+        if self.head.data == value:
+            self.head = self.head.next
+            return
+        n = self.head
+        while n.next is not None:
+            if value == n.next.data:
+                break
+            n = n.next
+        if n.next is None:
+            print("Node does not exist.")
+        else:
+            n.next = n.next.next
+        # current_node = self.head
+        # while current_node != value:
+        #     current_node = current_node.next
+        # if current_node == value and current_node.next:
+        #     current_node = current_node.next
+        # elif current_node == value and current_node.next == False:
+
 
     def insert_at(self, index, value):
         if index < 0:
@@ -101,4 +125,8 @@ linked_list.display() # display მეთოდის გამოყენე�
 # linked_list.display()
 
 linked_list.insert_at(5, 70)
+linked_list.display()
+linked_list.delete(70)
+linked_list.display()
+linked_list.delete(50)
 linked_list.display()
