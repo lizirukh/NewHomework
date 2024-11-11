@@ -41,23 +41,38 @@ class LinkedList:
             current_node.next = current_node.next.next
             
 
-    def insert_at(self, data, index):
+    def insert_at(self, index, value):
         if index < 0:
-            return 
-        
-        if index == 0:
-            self.head.next = self.head
-            self.head = data
             return
         
-        current_node = self.head
-        current_position = 0
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            return
+        if index == 0:
+            new_node.next = self.head
+            self.head = new_node
+            return self.head
+        else:
+            current_node = self.head
+            current_position = 0
+            while current_node and current_position < index:
+                current_node = current_node.next
+                current_position += 1
 
-        while current_position < index:
-            current_node = current_node.next
-            current_position += 1
+            new_node.next = current_node.next
+            current_node.next = new_node
 
-        current_node = data
+        # return self.head
+        # current_position = 0
+        # current_node = self.head
+
+        # while current_position < index - 1:
+        #     current_node.next = current_node
+        #     current_position += 1
+
+        # current_node.next = current_node
+        # current_node.data = value
 
     def display(self):
         current_node = self.head # გამოსატანად შემოგვაქვს current_node ცვლადი, და ვანიჭებთ self.head-ს რადგან დაიბეჭდოს ბოლო ელემენტიც 
@@ -80,10 +95,10 @@ linked_list.display() # display მეთოდის გამოყენე�
 # linked_list.display()
 # linked_list.remove_at(2) 
 # linked_list.display()
-linked_list.remove_at(0) 
-linked_list.display()
-linked_list.remove_at(4)
-linked_list.display()
+# linked_list.remove_at(0) 
+# linked_list.display()
+# linked_list.remove_at(4)
+# linked_list.display()
 
-linked_list.insert_at(15, 0)
+linked_list.insert_at(5, 70)
 linked_list.display()
