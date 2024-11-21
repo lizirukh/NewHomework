@@ -71,19 +71,29 @@ with open('movies.json', 'r') as json_file:
     try:
         movies = json.load(json_file)
         # print(type(movies))
-        # for movie in movies:
-        #     print(type(movie))
+
+        for movie in movies:
+            for key, value in movie.items():
+                if key == 'results':
+                    for i in value:
+                        if 'Crime' in i['genres'] and int(i['release_date'][:4]) > 2000:
+                            for j in i['genres']:
+                                if j == 'Crime':
+
+                                movies_list.append(i)
+                        # print(type(i['release_date']))
     except json.decoder.JSONDecodeError as e:
         print(e)
 
+
 # for movie in movies:
     # print(movie["results"][1]["original_title"])
-counter = 0
-for movie in movies:
-    for i in range(len(movies)):
+# counter = 0
+# for movie in movies:
+#     for i in range(len(movies)):
 
         # counter += 1
         # print(movie['results'][i]['title'], counter)
 
-
+print(movies_list)
 
