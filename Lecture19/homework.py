@@ -77,13 +77,20 @@ with open('movies.json', 'r') as json_file:
                 if key == 'results':
                     for i in value:
                         if 'Crime' in i['genres'] and int(i['release_date'][:4]) > 2000:
-                            for j in i['genres']:
-                                if j == 'Crime':
-
-                                movies_list.append(i)
+                            i['genres'][i['genres'].index('Crime')] = 'New Crime'
+                            movies_list.append(i)
+                        elif 'Drama' in i['genres'] and int(i['release_date'][:4]) < 2000:
+                            i['genres'][i['genres'].index('Drama')] = 'Old Drama'
+                            movies_list.append(i)
+                        elif int(i['release_date'][:4]) == 2000:
+                            i['genres'].append('New Century')
+                            movies_list.append(i)
                         # print(type(i['release_date']))
     except json.decoder.JSONDecodeError as e:
         print(e)
+
+with open('movies.json', 'w') as outfile:
+    json.dump(movies_list, outfile, indent=4)
 
 
 # for movie in movies:
@@ -95,5 +102,5 @@ with open('movies.json', 'r') as json_file:
         # counter += 1
         # print(movie['results'][i]['title'], counter)
 
-print(movies_list)
+
 
