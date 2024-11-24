@@ -27,8 +27,8 @@ def turn_character_into_dict(char_dct, ep_dct):
                 if ep == ep1['url']:
                     value_lst.append(ep1['name'])
         new_dct[data['name']] = value_lst
-    for key, value in new_dct.items():
-        print(f'{key}: {value}')
+    # for key, value in new_dct.items():
+    #     print(f'{key}: {value}')
 
     with open('characters.json', 'w') as json_file:
         json.dump(new_dct, json_file, indent=4)
@@ -42,5 +42,5 @@ def turn_character_into_dict(char_dct, ep_dct):
 
 
 
-# display_characters(char_dict)
+display_characters(char_dict)
 turn_character_into_dict(char_dict,ep_dict)
