@@ -5,42 +5,75 @@ class Book():
         self.year = year
 
 
-# books_list = []
-#
-# class BookManager():
-#     def add_new_book(self, name, author, year):
-#         new_book = Book(self.name, self.author, self.year)
-#         books_list.append(new_book)
-#
-#     def display_books(self):
-#         for book in books_list:
-#             print(f'{self.book.name} - {self.book.author} - {self.book.year}')
-#
-#     def search_book(self, name):
-#         for book in books_list:
-#             if book.name == name:
-#                 print(f'{self.book.name} - {self.book.author} - was issued in {self.book.year}')
+class BookManager():
+    def __init__(self):
+        self.books_lst = []
+
+    def add_new_book(self, book):
+        if isinstance(book, Book):
+            self.books_lst.append(book)
+            return f'Book {book.name} added successfully.'
+        return 'Invalid book type'
+
+    def display_books(self):
+            if not self.books_lst:
+                return 'The list is empty.'
+            return "\n".join([
+            f'{index + 1}. "{book.name}" by {book.author} ({book.year})'
+            for index, book in enumerate(self.books_lst)
+        ])
 
 
+    def search_book(self, name):
+        matches = [book for book in self.books_lst if book.name == name]
+        if not matches:
+            return f'No book found with the name "{name}".'
+        for book in matches:
+            return f'{book.name} by {book.author} ({book.year})'
 
-# def user_interface(user_input):
-#     if user_input == 1:
-#         name = input("Please enter the name of the book:")
-#         author = input("Please enter the name of the author:")
-#         year = int(input("Please enter the year the book was issued:"))
-#         BookManager.add_new_book(name, author, year)
-#     if user_input == 2:
-#         BookManager.display_books()
-#     if user_input == 3:
-#         name = input("Please enter the name of the book:")
-#         BookManager.search_book(name)
 
-book1 = Book("Animal Farm", "George Orwell", 1985)
-print(book1)
+def user_interface():
+    manager = BookManager()
 
-# books_list.append(books)
-# BookManager.display_books()
+    while True:
+        print("\nWelcome to the Book Manager!")
+        print("1. Add a new book")
+        print("2. Display the list of books")
+        print("3. Search for a book by name")
+        print("4. Exit")
 
-# usr_input = int(input(f"Please, enter number according to the action you would like to take: \n1 if you would like to add a new book \n2 if you would like to see the list of the books \n3 if you would like to search the book by it's name \n Type Here: "))
+        try:
+            usr_input = int(input("Enter your choice (1-4): "))
 
-# user_interface(usr_input)
+            if usr_input == 1:
+                name = input("Enter the name of the book: ")
+                author = input("Enter the author of the book: ")
+                year = input("Enter the year of issue: ")
+
+                if not year.isdigit():
+                    print("Year must be a valid number. Please, try again!")
+                else:
+                    book = Book(name, author, int(year))
+                    print(manager.add_new_book(book))
+
+            elif usr_input == 2:
+                print('\nList of Books:')
+                print(manager.display_books())
+
+            elif usr_input == 3:
+                search_name = input("Enter the name of the book: ")
+                print('\nSearch Result:')
+                print(manager.search_book(search_name))
+
+            elif usr_input == 4:
+                print('Exiting the application!')
+                break
+
+            else:
+                print('Invalid input! Please, enter number between 1-4 ')
+
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+user_interface()
+
