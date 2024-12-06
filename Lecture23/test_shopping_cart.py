@@ -37,4 +37,7 @@ class TestShoppingCart(unittest.TestCase):
 
 
     def test_remove_item(self):
+        pass
 
+    def test_is_empty(self):
+        pass
