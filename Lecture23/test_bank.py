@@ -32,4 +32,4 @@ class TestBankAccount(unittest.TestCase):
         self.assertEqual(str(context.exception), "Insufficient funds")
 
     def test_get_balance(self):
-        self.bankAccount.get_balance()
+        self.assertEqual(self.bankAccount.get_balance(), 5000)
