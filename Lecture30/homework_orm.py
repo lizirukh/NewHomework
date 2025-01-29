@@ -10,6 +10,8 @@ product2 = Product("Shirt", 22.0, 12)
 product3 = Product("Magnet", 4.0, 25)
 product4 = Product("Hoodie", 27.0, 10)
 product5 = Product("Poster", 3.0, 20)
+product6 = Product("Sticker", 1.5, 50)
+
 
 products = [product1, product2, product3, product4, product5]
 
