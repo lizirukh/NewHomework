@@ -1,4 +1,4 @@
-from homework_orm import cartItems, addToCart, viewCart
+from homework_orm import cartItems, addToCart, viewCart, deleteFromCart
 
 print(f'Pick a number: \n'
       f'1: View Cart \n'
@@ -19,8 +19,10 @@ def managingOrders(x):
             quantity = int(input("Enter quantity: "))
             addToCart(product_id, quantity)
         case 3:
-
-            pass
+            viewCart()
+            id = int(input("Please enter order id: "))
+            deleteFromCart(id)
+            print(f'These are products remaining in the shopping cart: \n')
         case 4:
             pass
         case 5:
